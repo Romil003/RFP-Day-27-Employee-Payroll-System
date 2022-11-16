@@ -26,31 +26,36 @@ public class EmployeePayrollService {
         ArrayList<EmployeePayrollData> employeePayrollList = new ArrayList<>();
         EmployeePayrollService employeePayrollService = new EmployeePayrollService(employeePayrollList);
         Scanner consoleInputReader = new Scanner(System.in);
-        employeePayrollService.readEmployeePayrollData(consoleInputReader);
+        employeePayrollService.readEmployeePayrollData(CONSOLE_IO);
         employeePayrollService.writeEmployeePayrollData(CONSOLE_IO) ;
+    }
+
+
+    public long readEmployeePayrollData(IOService ioService) {
+        if (ioService.equals(FILE_IO)){
+            this.employeePayrollList = new EmployeePayrollFileIOService().readData();
+        }
+        return employeePayrollList.size();
     }
 
     public void writeEmployeePayrollData(IOService ioService) {
         if(ioService.equals(CONSOLE_IO)){
-        System.out.println("Writing Employee Payroll Data to Console\n " + employeePayrollList );
+            System.out.println("Writing Employee Payroll Data to Console\n " + employeePayrollList );
         } else if (ioService.equals(FILE_IO)) {
             new EmployeePayrollFileIOService().writeData(employeePayrollList);
         }
-    }
-
-    public void readEmployeePayrollData(Scanner consoleInputReader) {
-        System.out.println("Enter Employee Id : ");
-        int id = consoleInputReader.nextInt();
-        System.out.println("Enter Employee name : ");
-        String name = consoleInputReader.next();
-        System.out.println("Enter Employee salary : ");
-        int salary = consoleInputReader.nextInt();
-        employeePayrollList.add(new EmployeePayrollData(id,name,salary));
     }
 
     public void printEmployeePayrollData(IOService ioService){
         if (ioService.equals(FILE_IO)){
             new EmployeePayrollFileIOService().printData();
         }
+    }
+
+    public long countEntries(IOService ioService) {
+        if (ioService.equals(FILE_IO)){
+            return new EmployeePayrollFileIOService().countEntries();
+        }
+        return 0;
     }
 }

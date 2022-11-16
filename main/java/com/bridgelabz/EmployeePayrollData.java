@@ -2,11 +2,11 @@ package com.bridgelabz;
 
 public class EmployeePayrollData {
 
-    int id;
+    int id ;
 
-    String name;
+    String name ;
 
-    int salary;
+    int salary ;
 
     public EmployeePayrollData() {
     }
