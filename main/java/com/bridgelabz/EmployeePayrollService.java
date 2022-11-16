@@ -27,7 +27,7 @@ public class EmployeePayrollService {
         EmployeePayrollService employeePayrollService = new EmployeePayrollService(employeePayrollList);
         Scanner consoleInputReader = new Scanner(System.in);
         employeePayrollService.readEmployeePayrollData(consoleInputReader);
-        employeePayrollService.writeEmployeePayrollData(CONSOLE_IO);
+        employeePayrollService.writeEmployeePayrollData(CONSOLE_IO) ;
     }
 
     public void writeEmployeePayrollData(IOService ioService) {
@@ -46,5 +46,11 @@ public class EmployeePayrollService {
         System.out.println("Enter Employee salary : ");
         int salary = consoleInputReader.nextInt();
         employeePayrollList.add(new EmployeePayrollData(id,name,salary));
+    }
+
+    public void printEmployeePayrollData(IOService ioService){
+        if (ioService.equals(FILE_IO)){
+            new EmployeePayrollFileIOService().printData();
+        }
     }
 }

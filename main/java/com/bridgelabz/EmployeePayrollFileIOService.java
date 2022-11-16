@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -7,7 +8,7 @@ import java.util.List;
 
 public class EmployeePayrollFileIOService {
 
-    public static String FILE_NAME = "payroll-File.txt";
+    public static String FILE_NAME = "payroll-File.txt" ;
     public void writeData(List<EmployeePayrollData> employeePayrollList) {
         StringBuffer empBuffer = new StringBuffer();
         employeePayrollList.forEach(employee -> {
@@ -16,6 +17,15 @@ public class EmployeePayrollFileIOService {
         });
         try {
             Files.write(Paths.get(FILE_NAME) , empBuffer.toString().getBytes());
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void printData() {
+        try {
+            Files.lines(new File(FILE_NAME).toPath())
+                    .forEach(System.out::println);
         } catch (IOException e){
             e.printStackTrace();
         }
