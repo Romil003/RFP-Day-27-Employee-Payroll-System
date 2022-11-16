@@ -4,9 +4,9 @@ public class EmployeePayrollData {
 
     int id ;
 
-    String name ;
+    String name;
 
-    int salary ;
+    int salary;
 
     public EmployeePayrollData() {
     }
